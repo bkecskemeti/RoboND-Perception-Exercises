@@ -12,7 +12,7 @@ vox = cloud.make_voxel_grid_filter()
 # Choose a voxel (also known as leaf) size
 # Note: this (1) is a poor choice of leaf size
 # Experiment and find the appropriate size!
-LEAF_SIZE = 2
+LEAF_SIZE = 0.01
 
 # Set the voxel (or leaf) size
 vox.set_leaf_size(LEAF_SIZE, LEAF_SIZE, LEAF_SIZE)
@@ -22,14 +22,14 @@ cloud_filtered = vox.filter()
 pcl.save(cloud_filtered, 'voxel_downsampled.pcd')
 
 # PassThrough filter
-# PassThrough filter
+
 # Create a PassThrough filter object.
 passthrough = cloud_filtered.make_passthrough_filter()
 
 # Assign axis and range to the passthrough filter object.
 filter_axis = 'z'
 passthrough.set_filter_field_name(filter_axis)
-axis_min, axis_max = 0, 2
+axis_min, axis_max = 0.6, 1.1
 passthrough.set_filter_limits(axis_min, axis_max)
 
 # Finally use the filter function to obtain the resultant point cloud.
